@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2021 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
 import {MyElement} from '../my-element.js';
 import {fixture, html} from '@open-wc/testing';
 
@@ -46,5 +52,11 @@ suite('my-element', () => {
       <slot></slot>
     `
     );
+  });
+
+  test('styling applied', async () => {
+    const el = await fixture(html`<my-element></my-element>`);
+    await el.updateComplete;
+    assert.equal(getComputedStyle(el).paddingTop, '16px');
   });
 });
